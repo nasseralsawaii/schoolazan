@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام تقييم المعلمين - مدرسة سعود بن عزان للتعليم الأساسي</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .teacher-form {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 500px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #f9c74f;
+            color: #000;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #f9844a;
+        }
+        .report {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>مدرسة سعود بن عزان للتعليم الأساسي</h1>
+<nav>
+  <ul>
+    <li><a class="button" href="index.html">الرئيسية</a></li>
+    <li><a class="button" href="news.html">الأخبار</a></li>
+    <li><a class="button" href="gallery.html">معرض الصور</a></li>
+    <li><a class="button" href="contact.html">تواصل معنا</a></li>
+    <li><a class="button" href="teachers.html">تقييم المعلمين</a></li>
+  </ul>
+</nav>
+    </header>
+
+    <main>
+        <section class="teacher-form">
+            <h2>إضافة معلم</h2>
+            <label for="teacherName">اسم المعلم:</label>
+            <input type="text" id="teacherName">
+
+            <label for="subject">المادة:</label>
+            <input type="text" id="subject">
+
+            <button id="generate">إنشاء التقرير</button>
+        </section>
+
+        <section class="report" id="report" style="display:none;">
+            <h3>تقرير المعلم</h3>
+            <p id="reportText"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>حقوق الطبع والنشر &copy; 2024 مدرسة سعود بن عزان للتعليم الأساسي</p>
+    </footer>
+
+    <script>
+        const strategies = [
+            "استخدام التعلم التعاوني في الصف.",
+            "دمج الوسائط المتعددة لتحفيز الطلاب.",
+            "تنويع طرق التقويم والمتابعة."
+        ];
+        const strengths = [
+            "إدارة صفية جيدة.",
+            "اتقان المادة العلمية.",
+            "القدرة على تحفيز الطلاب."
+        ];
+        const weaknesses = [
+            "قلة استخدام الوسائل الحديثة.",
+            "الاعتماد على التلقين التقليدي.",
+            "ضعف في تصميم الأنشطة."
+        ];
+
+        function randomItem(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        document.getElementById('generate').addEventListener('click', function() {
+            const name = document.getElementById('teacherName').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            if (!name || !subject) {
+                alert('يرجى إدخال اسم المعلم والمادة.');
+                return;
+            }
+
+            const report = `المعلم ${name} يدرس مادة ${subject}.\n` +
+                `استراتيجية مقترحة: ${randomItem(strategies)}\n` +
+                `نقطة قوة محتملة: ${randomItem(strengths)}\n` +
+                `نقطة تحتاج إلى تطوير: ${randomItem(weaknesses)}`;
+
+            document.getElementById('reportText').innerText = report;
+            document.getElementById('report').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
